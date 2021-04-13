@@ -22,7 +22,7 @@ case "$1" in
     podman attach odoo
     ;;
   shell|c)
-    podman exec -it odoo /bin/bash
+    podman exec -it --user=root odoo /bin/bash
     ;;
   start|s)
     podman pod start odoo-dev
