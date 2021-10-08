@@ -12,6 +12,7 @@ Commands:
   attach    Attach to odoo instance
   start     Starting the pod
   stop      Stopping the pod
+  restart   Restart Odoo
   *         Help
 "
   exit 1
@@ -30,6 +31,10 @@ case "$1" in
     ;;
   stop|x)
     podman pod stop odoo-dev
+    ;;
+  restart|r)
+    podman stop odoo
+    podman start odoo
     ;;
   *)
     cli_help
