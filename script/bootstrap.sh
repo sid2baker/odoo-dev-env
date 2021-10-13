@@ -1,6 +1,8 @@
 #!/bin/bash
 set +e
 
+VERSION=15.0
+
 create_pod () {
   podman pod create -p 8069:8069 --name odoo-dev
   podman run --pod odoo-dev -d \
@@ -9,14 +11,14 @@ create_pod () {
     -e POSTGRES_PASSWORD=odoo \
     -e PGDATA=/var/lib/postgresql/data/pgdata \
     -v odoo-db-data:/var/lib/postgresql/data/pgdata \
-    --name db postgres:10
+    --name db postgres:13
   podman run --pod odoo-dev -dit \
     -v odoo-web-data:/var/lib/odoo \
     -v ./config:/etc/odoo:Z \
     -v ./src/enterprise:/home/odoo/enterprise:Z \
     -v ./addons:/home/odoo/user:Z \
     --entrypoint=/bin/bash \
-    --name odoo odoo:latest
+    --name odoo odoo:$VERSION
 }
 
 if [ "$(podman pod ps | grep odoo-dev | wc -l)" == "0" ] ; then
