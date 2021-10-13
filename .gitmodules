@@ -1,3 +1,9 @@
 [submodule "docker"]
 	path = docker
 	url = https://github.com/odoo/docker
+[submodule "src/odoo"]
+	path = src/odoo
+	url = git@github.com:odoo/odoo.git
+[submodule "src/enterprise"]
+	path = src/enterprise
+	url = git@github.com:odoo/enterprise.git
