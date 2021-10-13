@@ -13,7 +13,7 @@ create_pod () {
   podman run --pod odoo-dev -dit \
     -v odoo-web-data:/var/lib/odoo \
     -v ./config:/etc/odoo:Z \
-    -v ./enterprise:/home/odoo/enterprise:Z \
+    -v ./src/enterprise:/home/odoo/enterprise:Z \
     -v ./addons:/home/odoo/user:Z \
     --entrypoint=/bin/bash \
     --name odoo odoo:latest
